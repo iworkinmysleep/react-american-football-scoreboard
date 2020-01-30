@@ -1,5 +1,5 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 
@@ -8,6 +8,11 @@ function App() {
 
 const [homescore, sethomescore] = useState(2);
 const [awayscore, setawayscore] = useState(3);
+// function resetbtn() {
+//   homescore(0);
+//   awayscore(0);
+// }
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -33,6 +38,9 @@ const [awayscore, setawayscore] = useState(3);
           <button className="homeButtons__touchdown" onClick = {() => sethomescore(homescore + 7)}>Home Touchdown</button>
           <button className="homeButtons__fieldGoal" onClick = {() => sethomescore(homescore + 3)}>Home Field Goal</button>
         </div>
+        {/* <div className="resetBtn">
+          <button className="reset" onClick = {() => resetbtn()}>Reset Board</button> */}
+        {/* </div> */}
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick = {() => setawayscore(awayscore + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick = {() => setawayscore(awayscore + 3)}>Away Field Goal</button>
