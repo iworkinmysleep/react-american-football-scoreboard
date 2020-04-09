@@ -8,12 +8,15 @@ function App() {
 
 const [homescore, sethomescore] = useState(2);
 const [awayscore, setawayscore] = useState(3);
-// function resetbtn() {
-//   homescore(0);
-//   awayscore(0);
-// }
+const [timer, setTimer] = useState(60)
 
-  return (
+useEffect(() => {
+  const clock =
+    timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+  return () => clearInterval(clock);
+}, [timer]);
+  return (    
+
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
@@ -24,7 +27,7 @@ const [awayscore, setawayscore] = useState(3);
 
             <div className="home__score">{homescore}</div>
           </div>
-          <div className="timer">00:03</div>
+          <div className="timer">15:{timer}</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayscore}</div>
@@ -38,12 +41,14 @@ const [awayscore, setawayscore] = useState(3);
           <button className="homeButtons__touchdown" onClick = {() => sethomescore(homescore + 7)}>Home Touchdown</button>
           <button className="homeButtons__fieldGoal" onClick = {() => sethomescore(homescore + 3)}>Home Field Goal</button>
         </div>
-        {/* <div className="resetBtn">
-          <button className="reset" onClick = {() => resetbtn()}>Reset Board</button> */}
-        {/* </div> */}
+        
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick = {() => setawayscore(awayscore + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick = {() => setawayscore(awayscore + 3)}>Away Field Goal</button>
+        
+        {/* <div className= 'quarter_change'>
+          <button className= 'quarterButton' onClick={() => setQuarter(quarter + 1)}>Change Quarter</button>
+        </div> */}
         </div>
       </section>
     </div>
